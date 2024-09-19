@@ -12,6 +12,7 @@ use App\Models\CustomerKYC;
 use GuzzleHttp\Client;
 use App\Models\Refunds;
 use App\Models\TapPayment;
+use App\Models\TempHoldCustomerSign;
 use Illuminate\Http\Request;
 use App\Models\TapPaymentLink;
 use App\Models\Foloosi;
@@ -1578,7 +1579,7 @@ $filteredTapTransactions = $tap_transactions->reject(function ($transaction) use
                 $maxDateInMilliseconds = $maxDate->timestamp * 1000;
                 
                 $query->whereBetween('p.date', [$minDateInMilliseconds, $maxDateInMilliseconds])
-                ->where('p.agentID', $status);
+                ->where('p.agentID', $agent);
             }
     
             elseif ($agent) {

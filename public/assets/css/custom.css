@@ -1,0 +1,394 @@
+ #checkbox_terms {
+    padding: 1em;
+    border: 3px solid #ddd !important;
+    background-color: #eee !important;
+    height: 2em !important;
+    width: 2em !important;
+    vertical-align: middle;
+  }
+  .term_link{
+    color: #fd6a4f !important;
+  }
+  .blocker{
+    z-index: 999 !important;
+  }
+  #ex1 h2{
+    text-align: center;
+  }
+  #ex1 p{
+    font-size: 13px;
+  }
+  .modal_close{
+    color: #cc2d0f;
+    font-size: 20px;
+    font-weight: 800;
+  }
+  .in-profit-4 .in-profit-stockprice .uk-card-body{
+    padding: 5px 20px !important;
+  }
+.logout{
+    border: none;
+    background: no-repeat;
+    color: white;
+    font-size: 16px;
+    padding: 0;
+    cursor: pointer;
+}
+.logout:hover{
+    text-decoration: underline;
+}
+.blur-bg{
+    padding: 5px;
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+    border: 1px;
+    text-align: justify;
+  }
+  .in-profit-4 .in-profit-stockprice .uk-card-body{
+    padding: 8px 20px !important;
+  }
+  .twitter{
+    width: 18px;
+    position: relative;
+    left: 10px;
+    mix-blend-mode: soft-light;
+  }
+  .dark-mode {
+    /* Dark mode styles */
+    background-color: #1e1e1e;
+    color: #fff;
+  }
+
+  /* Style the toggle switch */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  .theme-switch-icon {
+    cursor: pointer;
+    font-size: 24px; /* Adjust as needed */
+    position: relative;
+    bottom: 2px;
+    /* Additional styling */
+}
+.uk-sticky.uk-active.uk-navbar-container, .uk-sticky.uk-active .uk-navbar-nav{
+    height: auto !important;
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+    background-image: linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%) !important;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  .sticky + .main {
+    padding-top: 60px;
+  }
+.sticky-link li a {
+   color:#fd6c58 !important;
+  }
+
+  .uk-navbar-nav > li > a{
+    color: #595858;
+    font-weight: 600;
+  }
+  /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+  .in-mobile-nav .uk-button{
+    box-shadow: 0px 0px 16px 11px #f5f5f5;
+  }
+  .theme-switch-icon img{
+    width: 35px;
+}
+.display-picture img{
+    width: 50px;
+    border-radius: 50%;
+    border:2px solid #fff;
+  }
+  .display-picture img:hover{
+  border:2px solid #E78341;
+  }
+  .table-fill {
+    background: white;
+    border-radius:3px;
+    border-collapse: collapse;
+    height: auto;
+    margin: auto;
+    /* max-width: 600px; */
+    padding:5px;
+    width: 100%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    animation: float 5s infinite;
+  }
+
+  .table-fill th {
+    color:#D5DDE5;;
+    background:#463a5c;
+    border-bottom:4px solid #9ea7af;
+    border-right: 1px solid #343a45;
+    font-size:15px;
+    font-weight: 100;
+    padding:10px;
+    text-align:left;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    vertical-align:middle;
+  }
+
+    .table-fill th:first-child {
+    border-top-left-radius:3px;
+  }
+
+    .table-fill th:last-child {
+    border-top-right-radius:3px;
+    border-right:none;
+  }
+
+    .table-fill tr {
+    border-top: 1px solid #C1C3D1;
+    border-bottom: 1px solid #C1C3D1;
+    color:#666B85;
+    font-size:16px;
+    font-weight:normal;
+    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+  }
+
+    .table-fill tr:hover td {
+    background:#4E5066;
+    color:#FFFFFF;
+    border-top: 1px solid #22262e;
+  }
+
+    .table-fill tr:first-child {
+    border-top:none;
+  }
+
+    .table-fill tr:last-child {
+    border-bottom:none;
+  }
+
+    .table-fill tr:nth-child(odd) td {
+    background:#EBEBEB;
+  }
+
+    .table-fill tr:nth-child(odd):hover td {
+    background:#4E5066;
+  }
+
+    .table-fill tr:last-child td:first-child {
+    border-bottom-left-radius:3px;
+  }
+
+    .table-fill tr:last-child td:last-child {
+    border-bottom-right-radius:3px;
+  }
+
+  .table-fill td {
+    background:#FFFFFF;
+    padding:10px;
+    text-align:left;
+    vertical-align:middle;
+    font-weight:300;
+    font-size:15px;
+    /* text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1); */
+    border-right: 1px solid #C1C3D1;
+  }
+
+    .table-fill td:last-child {
+    border-right: 0px;
+  }
+
+    .table-fill th.text-left {
+    text-align: left;
+  }
+
+    .table-fill th.text-center {
+    text-align: center;
+  }
+
+    .table-fill th.text-right {
+    text-align: right;
+  }
+
+    .table-fill td.text-left {
+    text-align: left;
+  }
+
+    .table-fill td.text-center {
+    text-align: center;
+  }
+
+    .table-fill td.text-right {
+    text-align: right;
+  }
+  .download-btn {
+      color: purple;
+      font-weight: bold;
+      background: #fed5cd;
+      padding: 6px;
+      border-radius: 5px;
+      font-size: 15px
+
+  }
+  .download-btn:hover{
+      text-decoration: none;
+  }
+  .view_invoice{
+      color: black;
+  text-decoration: none;
+  }
+
+@media only screen and (max-width: 668px) {
+    .element img {
+      display: none;
+    }
+    header .in-optional-nav div{
+        margin-left: 0 !important;
+        padding: 3px 0px 5px 0px !important;
+        font-size: 12px !important;
+    }
+    .theme-switch-icon img{
+        width: 30px;
+    }
+    .display-picture img{
+        width: 40px;
+        position: relative;
+        bottom: 5px;
+    }
+    #link{
+        position: relative;
+        bottom: 100px;
+    }
+
+  }
+
+
+  @media only screen and (max-width: 668px)   {
+
+    /* Force table to not be like tables anymore */
+    .table-fill,.table-fill thead, .table-fill tbody, .table-fill th, .table-fill td,.table-fill tr {
+        display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    .table-fill thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+.table-fill tr {
+  margin: 0 0 1rem 0;
+}
+
+.table-fill tr:nth-child(odd) {
+  background: #ccc;
+}
+
+    .table-fill td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    .table-fill td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 0;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+    }
+
+    /*
+    Label the data
+You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+    */
+    .table-fill td:nth-of-type(1):before { content: "Name"; }
+  .table-fill td:nth-of-type(2):before { content: "Email"; }
+  .table-fill td:nth-of-type(3):before { content: "Amount"; }
+  .table-fill td:nth-of-type(4):before { content: "Currency"; }
+  .table-fill td:nth-of-type(5):before { content: "Date"; }
+  .table-fill td:nth-of-type(6):before { content: "Action"; }
+
+  .table-fill td{
+    padding: 0;
+    padding-left: 50%;
+    font-size: 12px;
+  }
+  .uk-card-title{
+    font-size: 1rem;
+  }
+  .transaction_body{
+    padding:5px ;
+  }
+  .view_invoice{
+    background: #FF9800;
+    padding: 2px;
+    border-radius: 5px;
+    color: white;
+    box-shadow: -1px 0px 0px 0px #00000054;
+  }
+
+  .transaction_info{
+    position: static !important;
+  }
+  .transaction_info th{
+    padding: 5px !important;
+    text-align: center !important;
+    font-size: 15px;
+  }
+  .download-btn{
+    padding: 3px;
+    font-size: 14px;
+  }
+}

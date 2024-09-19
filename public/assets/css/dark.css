@@ -1,0 +1,156 @@
+body{
+    background-color: #0a020c;
+
+}
+.uk-slideshow-items,.uk-section-muted,.in-profit-3{
+    background-color: #0a020c !important;
+}
+p{
+    color: #efefef;
+}
+#tp-widget-wrapper{
+    color: white !important;
+}
+.footer-section{
+    background: #3f345338;
+    box-shadow: inset 0px 5px 20px 20px #000;
+}
+h1, .uk-h1, h2, .uk-h2, h3, .uk-h3, h4, .uk-h4, h5, .uk-h5, h6, .uk-h6, .uk-heading-small, .uk-heading-medium, .uk-heading-large, .uk-heading-xlarge, .uk-heading-2xlarge{
+    color: #fd6a4f;
+}
+.uk-navbar-nav > li > a{
+    color: #d8d8d8;
+}
+td a,#example_filter{
+color: white;
+}
+.fund-protection-section li {
+color: white !important;
+}
+.uk-sticky.uk-active{
+    background-color: #0a020c !important;
+}
+.in-profit-2 .in-pricing-1 .uk-card-media-top span{
+    background: linear-gradient(0deg, #0e0818 0%, rgb(1 1 1 / 60%) 30%, rgba(247, 247, 250, 0) 100%);
+}
+.in-profit-2 .in-pricing-1 .uk-card-default{
+background: linear-gradient(119deg, #0e0818 0%, #0e0818 45%, #0e0818 75%, #0e0818 100%);
+}
+.uk-card-default{
+    background: linear-gradient(119deg, #0e0818 0%, #0e0818 45%, #0e0818 75%, #0e0818 100%) !important;
+    border: none;
+}
+.twitter{
+    mix-blend-mode: unset;
+  }
+  .in-profit-4 .in-profit-stockprice .uk-card-body
+  {
+    background: #16121f;
+    border: none;
+    box-shadow: inset -1px 1px 2px 0px black;
+  }
+  .dark-input{
+    background: #141314;
+    border: none;
+    color: #f3f3f3;
+  }
+
+
+#tsparticles{
+    position: relative;
+    display: block !important;
+}
+#tsparticles img{
+    width: 100%;
+    position: absolute;
+}
+.uk-form-icon:not(.uk-form-icon-flip) ~ .uk-input{
+    background: #0a020c;
+}
+.display-picture img{
+    border: 2px solid #fd6a4f;
+}
+.profile-pic img{
+    box-shadow: 0 0 10px 0 rgb(253 106 79) !important;
+}
+.element{
+    position: relative;
+    display: block!important;
+}
+.element img{
+    width: 100%;
+    position: absolute;
+    width: 400px;
+    opacity: 0.4;
+    right: 0;
+    margin-right: 90px;
+    margin-top: 50px;
+    mix-blend-mode: difference;
+}
+.google_map,thead{
+    filter: invert(90%);
+}
+textarea{
+    background: #0a020c !important;
+}
+.uk-text-lead{
+text-align: justify !important;;
+}
+
+.dataTables_wrapper .dataTables_paginate .fg-button{
+    font-size: 12px;
+    background: #150c1b;
+    color: white;
+}
+.sticky{
+    background: linear-gradient(to right top, #000000, #000000, #04393ea1, #0000009e, #000000) !important;
+}
+.in-highlight::before{
+    background: #ff98002e;
+}
+.uk-card-default .uk-card-title {
+    color: #FF9800;
+}
+.table-fill td{
+    background: #0e0818;
+    color: white;
+}
+.table-fill tr:nth-child(odd) td {
+    background: #000000;
+}
+.view_invoice {
+    color: #FF9800;
+}
+.table-fill th{
+    color: #ffffff;
+}
+/* Mobile Styles */
+@media (max-width: 668px) {
+    #tsparticles
+    {
+        display: none !important;;
+    }
+    .footer-section{
+        box-shadow: inset 0px 2px 10px 0px #000;
+    }
+    .in-mobile-nav .uk-button {
+        box-shadow: none;
+        color: #fd6a4f;
+        font-size: 20px;
+        box-shadow: 0px 0px 4px 0px #9c665d;
+    }
+    .uk-modal-close-full{
+        color: #fd6a4f;
+        box-shadow: none;
+    }
+    .uk-modal-close-full.uk-button{
+        font-size: 20px;
+    }
+    .uk-modal-full .uk-modal-dialog{
+        background: #0a020c94;
+    }
+    .uk-nav-default li a{
+        font-size:20px;
+        color: white;
+    }
+}

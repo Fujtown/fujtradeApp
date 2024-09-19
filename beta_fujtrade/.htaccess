@@ -1,0 +1,20 @@
+
+# .htaccess file for basic website configurations
+
+# Prevent directory listings
+Options -Indexes
+
+# Follow symbolic links in this directory.
+Options +FollowSymLinks
+
+# Customized error messages.
+ErrorDocument 404 /notfound.html
+
+# File to be called if the website is ever accessed without a specific file name.
+DirectoryIndex index.php index.html index.htm
+
+# Redirect to www
+RewriteEngine On
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+

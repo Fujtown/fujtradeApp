@@ -1,0 +1,59 @@
+@media only screen and (max-width: 680px) {
+    .mobile-width{
+        width: 100%;
+    }
+    #topnav .topbar-main{
+        background-color: white !important;
+    }
+    #topnav .topbar-main .logo-large{
+        height: 30px !important;
+        mix-blend-mode: inherit !important;
+      }
+    #datatable-buttons img{
+        width: 15px !important;
+    }
+    .table > tbody > tr > td, .table > tfoot > tr > td, .table > thead > tr > td{
+        padding: 3px 0px !important;
+    }
+    .table-body{
+        overflow-x: scroll;
+    }
+    .table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td{
+        font-size: 12px;
+    }
+    table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before{
+        top: 4px !important;
+    left: 20px !important;
+    }
+    table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_desc, table.dataTable thead>tr>th.sorting, table.dataTable thead>tr>td.sorting_asc, table.dataTable thead>tr>td.sorting_desc, table.dataTable thead>tr>td.sorting {
+        font-size: 12px !important;
+    }
+    .btn-group-vertical>.btn, .btn-group>.btn {
+        font-size: 12px !important;
+    }
+    .table-body #sync_data{
+        font-size: 12px;
+    }
+  }
+  #topnav .topbar-main .logo-large{
+    height: 50px;
+    mix-blend-mode: color-burn;
+  }
+  #topnav .topbar-main{
+    background-color: #283179;
+  }
+    .share{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .share h2{
+        font-size: 15px;
+        text-align: center;
+    }
+    .share ul li{
+        list-style-type:none; display:inline-block; margin:1rem;
+    }
+    #datatable-buttons img{
+        width: 24px;
+    }

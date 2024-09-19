@@ -1,0 +1,46 @@
+
+    .profile_ul{
+        margin: 0;
+        border: none;
+    }
+    .profile_menu{
+        list-style: none;
+    }
+    .profile_menu li a:hover{
+        color: #FFF;
+    }
+    .display-picture{
+  margin-left: auto;
+}
+
+.profile_card{
+    border: none !important;
+    margin:0 !important;
+    padding: 0 !important;
+  transition: 0.5s ease;
+}
+
+.profile_card ul{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  background: #200423a3;
+  position: absolute;
+  top: 5rem;
+  right:0rem;
+border-radius: 10px;
+padding: 10px 90px 10px 20px;
+}
+.profile_card ul li{
+
+  padding: 5px 0;
+  color: #FFF;
+  font-size: 14px;
+}
+.hidden{
+  display: none;
+}
+a{
+  text-decoration: none;
+  color:#fff;
+}

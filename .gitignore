@@ -17,3 +17,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/config/payments.php
+/public/kyc/
+/public/signature/
+/public/pdf/

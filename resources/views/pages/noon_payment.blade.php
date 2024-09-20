@@ -511,9 +511,10 @@ button#clear span {
                           <input type="hidden" value="1" id="country_code" name="country_code">
                           <input type="hidden"  value="{{ number_format($payment->amount, 2, '.', ',') }}" id="amount">
                           <input type="hidden" value="{{$payment->currency}}" id="currency">
-                                                    <input type="hidden" value="AED" id="c_currency">
-                                                                              <input type="hidden" value="{{$c_amount}}" id="c_amount">
+                           <input type="hidden" value="AED" id="c_currency">
+                             <input type="hidden" value="{{$c_amount}}" id="c_amount">
                           <input type="hidden" value="{{$payment->agentID}}" id="agentID">
+                      
                             <div style="margin-top:10px">
                                <lable style="text-align:left;width: 100%;display: block;padding: 4px;">Please Make Your Signature Here</lable>     
                                   <div class="flex-row">
@@ -590,6 +591,7 @@ button#clear span {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/intlTelInput.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.3.5/signature_pad.min.js" integrity="sha512-kw/nRM/BMR2XGArXnOoxKOO5VBHLdITAW00aG8qK4zBzcLVZ4nzg7/oYCaoiwc8U9zrnsO9UHqpyljJ8+iqYiQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      
 <script>
        var canvas = document.getElementById("signature-pad");
 
@@ -710,7 +712,7 @@ button#clear span {
         },
     };
 
-    fetch('{{ url('createNoonCharge') }}', {
+    fetch('{{ url("createNoonCharge") }}', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

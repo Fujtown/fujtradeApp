@@ -16,10 +16,10 @@
                     <div class="btn-group pull-right">
                         <ol class="breadcrumb hide-phone p-0 m-0">
                             <li class="breadcrumb-item"><a href="#">Fujtrade</a></li>
-                            <li class="breadcrumb-item active">New Noon Link</li>
+                            <li class="breadcrumb-item active">New Network International Link</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Create New Noon Link</h4>
+                    <h4 class="page-title">Create New Network International Link</h4>
                     <br>
 
                 </div>
@@ -186,19 +186,17 @@
                     $(".generate").attr( "disabled", "disabled" );
                     $(".generate").text('Loading...');
                     var data = new FormData(document.getElementById("createLink"));
-                    var storeNoonLinkUrl = "{{ url('coffee/store_noon_link') }}";
+                    var storeNetworLinkUrl = "{{ url('coffee/store_networkInt_link') }}";
                     $.ajax({
                         headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                         url: storeNoonLinkUrl,
+                         url: storeNetworLinkUrl,
                          type: "POST",
                         data: data,
                         processData: false,
                         contentType: false,
                         success: function(response) {
-
-                        //   alert(response)
                         Swal.fire({
                             icon: 'success',
                             title: 'Success',

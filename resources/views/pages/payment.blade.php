@@ -737,12 +737,12 @@ button#clear span {
           },
           merchant: { id: '1263747' },
           source: { id: 'src_all' },
-          post: { url: '{{ url('/api/tapwebhook') }}' },
-          redirect: { url: '{{ url('success')}}' }
+          post: { url: '{{ url("/api/tapwebhook") }}' },
+          redirect: { url: '{{ url("success")}}' }
         };
 
         // Make an Ajax request to the server's createCharge route
-        fetch('{{ url('createCharge')}}', {
+        fetch('{{ url("createCharge")}}', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -755,7 +755,7 @@ button#clear span {
           console.log('Charge request successful:', data);
 
            // Change the button text back to the original value
-      document.getElementById('chargeButton').value = 'Pay {{$payment->currency}} {{ number_format($payment->amount, 2, '.', ',') }} ';
+      document.getElementById('chargeButton').value = 'Pay {{$payment->currency}} {{ number_format($payment->amount, 2, ".", ",") }} ';
            // Check if the response contains a transaction with a URL
            if (data.transaction && data.transaction.url) {
             // Open the URL in a new window or tab

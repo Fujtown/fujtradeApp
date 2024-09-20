@@ -32,6 +32,7 @@ use Illuminate\Support\Facades\Http;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Exports\FoloosiTransactionsExport;
 use App\Exports\TransactionsExport;
+use App\Models\NetworkIntLink;
 use Maatwebsite\Excel\Facades\Excel;
 class SuperAdminController extends Controller
 {
@@ -1485,7 +1486,8 @@ $filteredTapTransactions = $tap_transactions->reject(function ($transaction) use
            if ($request->hasFile('kyc_files')) {
             $files = $request->file('kyc_files');
             $tempInv = $request->input('temp_inv');
-            $zip = new ZipArchive();
+            $zip = new \ZipArchive;
+
             // $zipFileName = $customer .  date('Y-m-d') . '.zip';
             $dateTime = Carbon::now()->format('Y-m-d_H-i-s');
             $zipFileName = "kyc_{$dateTime}.zip";
@@ -1983,6 +1985,71 @@ public function noon_response(Request $request)
         $item->delete(); // Delete the item
 
         return back()->with('success', 'Link deleted successfully.');
+    }
+
+    public function create_networkInt_link(Request $request)
+    {
+        // dd();
+        $user = Auth::guard('admin')->user();
+        $user_id = $user->id;
+        $query = AgentLinkLimit::query();
+        $query->where('agentID', $user_id);
+        $payment = $query->get()->first();
+        // dd();
+        if($payment !=null)
+        {
+            $limit_amount=$payment->limit_amount;
+        }
+        else{
+            $limit_amount=0;
+        }
+
+        return view('pages.superadmin.new_network_int_link',compact('limit_amount'));
+    }
+
+    public function store_networkInt_link(Request $request)
+    {
+        $payment_type = $request->input('payment_type');
+        $amount = $request->input('amount');
+
+        $currency = $request->input('currency');
+        $random_number = UniqueNumberGenerator::generateUniqueRandomNumber();
+
+        $clientName = "Hi Client,"; // Replace with actual client name
+
+
+        $user = Auth::guard('admin')->user();
+        $user_id = $user->id;
+        $billAmount = $currency . ' ' . $amount;
+        $url = url('/network-payment/' . $random_number);
+          $temp_inv = $request->input('temp_inv');
+        $message = "$clientName Here is your bill of  $billAmount from Fujtown. You can easily view & pay your bill online now $url.
+        ";
+        // dd($message);
+
+         NetworkIntLink::create([
+            'amount' => $amount,
+            'currency' => $currency,
+            'payment_type' => $payment_type,
+            'url' => $message, // Assuming this was intended to store the message
+            'random_no' => $random_number,
+            'link_payment' => 'tap',
+            'agentID'=>$user_id,
+            'temp_inv_no'=>$temp_inv
+        ]);
+        
+        
+            $customerKYC = CustomerKYC::firstOrNew(['temp_inv_no' => $temp_inv]);
+            $customerKYC->invoice_no = $random_number;
+             $customerKYC->save();
+
+
+        // Redirect or return a response
+        return response()->json([
+            'url' => $message,
+            'success' => 'Network International Payment link created successfully.'
+        ]);
+
     }
         
         public function logout()

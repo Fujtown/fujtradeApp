@@ -123,6 +123,7 @@ return [
     */
 
     'key' => env('APP_KEY'),
+    'foolosi_key' => env('FOOLOSI_LIVE_KEY'),
 
     'cipher' => 'AES-256-CBC',
 

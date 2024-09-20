@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Traits\GeneratesClientPdf;
 use App\Traits\SendsWelcomeEmail;
 use App\Models\LinkStatus;
+use App\Models\NetworkIntLink;
 use App\Models\TempHoldCustomerSign;
 use App\Traits\SendClientAgreementEmail;
 use Illuminate\Support\Facades\Http;
@@ -410,7 +411,7 @@ class HomeController extends Controller
         {
             $content = json_encode($bodyContent, JSON_PRETTY_PRINT);
             $charge = json_decode($bodyContent, true);
-
+            
             // Assuming $data is an array with the necessary structure
             $amount = $charge['amount'];
             $brand = $charge['card']['brand'] ?? 'defaultBrand';
@@ -583,7 +584,8 @@ class HomeController extends Controller
                 }
             }
             else{
-                
+                $existingCustomer = Customer::where('email', $email)->first();
+                $customerSignData = TempHoldCustomerSign::where('customer_email', $email)->first();    
                  // Check if the customer sign data exists
                     if ($customerSignData) {
                         // Get the customer sign from the retrieved data
@@ -1071,7 +1073,7 @@ public function save_manual_foloosi()
                 
             // Optionally save the webhook payload to a file for record-keeping
             $fileName = "webhooks/{$chargeId}.json";
-            Storage::disk('local')->put($fileName, json_encode($data));
+            Storage::disk('local')->put($fileName, json_encode($pdatas));
 
             return response()->json(['message' => 'Webhook processed and saved'], 200);
         } else {
@@ -1295,6 +1297,8 @@ public function noonPayment($id)
             return response()->view('errors.404', ['message' => 'The link has been expired.'], 404);
         }
 }
+
+
 
 public function create_noon_link()
 {
@@ -1642,7 +1646,7 @@ public function noon_response(Request $request)
                         'lname' => $last_name,
                         'username' => $first_name . $last_name, // Consider adding a separator or handling potential username clashes
                         'email' => $email,
-                        'phone' => $country_code . $number,
+                        'phone' => $phone,
                         'password' => Hash::make($randomPassword), // Encrypt the password
                         'photo' => 'default.png',
                         'customer_sign'=>$customerSign,
@@ -1938,6 +1942,28 @@ public function noon_response(Request $request)
         return response()->json(['error' => 'Internal Server Error'], 500);
     }
 }
+
+
+public function networkPayment($id)
+{
+    // $query->where('random_no', $id);
+    $payment = NetworkIntLink::where('random_no', $id)
+    ->where('is_expire', '!=', 2)
+    ->first();
+
+    if ($payment != null) {
+        session(['url_no' => $id]);
+        return view('pages.networkpayment',compact('payment'));
+        // dd('this is not a valid payment');
+
+    }
+    else{
+        return response()->view('errors.404', ['message' => 'The link has been expired.'], 404);
+    }
+}
+
+
+
         
         public function testCode(Request $request)
         {

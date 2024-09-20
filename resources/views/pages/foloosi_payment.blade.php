@@ -470,6 +470,7 @@ background: linear-gradient(to right, #536976, #BBD2C5); /* W3C, IE 10+/ Edge, F
   
 function initializeFoloosiPayment() {
     const form = document.getElementById('paymentForm');
+    const foolosi_key = "{{ config('app.foolosi_key') }}";
 
     const data = {
         transaction_amount: form.transaction_amount.value,
@@ -486,7 +487,7 @@ function initializeFoloosiPayment() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'merchant_key': 'live_$2y$10$IHiS6mFaIAlGF8ioou2JQufBG0MAVdUZkWWs2wYJ61MGqlYZF7so6' // Replace with your merchant key
+            'merchant_key': foolosi_key // Replace with your merchant key
         },
         body: JSON.stringify(data)
     })

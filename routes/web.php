@@ -12,6 +12,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\API\TapPaymentController;
+use App\Http\Controllers\NetworkIntPaymentController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/create_noon_link', [HomeController::class, 'create_noon_link']);
 Route::get('/noon_response', [HomeController::class, 'noon_response']);
 Route::get('/noon-payment/{id}', [HomeController::class, 'noonPayment'])->name('noon-payment');
+
+Route::get('/network-payment/{id}', [HomeController::class, 'networkPayment'])->name('network-payment');
 
 Route::get('/foloosi-payment/{id}', [HomeController::class, 'preparePayment'])->name('foloosi-payment');
 Route::get('/test_payment_api', [HomeController::class, 'test_payment_api'])->name('test_payment_api');
@@ -78,6 +81,7 @@ Route::post('/login', [CustomerController::class, 'login_customer'])->name('logi
 //Create Charge
 Route::post('/createCharge', [HomeController::class, 'createCharge'])->name('createCharge');
 Route::post('/createNoonCharge', [HomeController::class, 'createNoonCharge'])->name('createNoonCharge');
+Route::post('/createNetworkCharge', [NetworkIntPaymentController::class, 'createNetworkCharge'])->name('createNetworkCharge');
 Route::get('/save_noon_payment_data', [HomeController::class, 'save_noon_payment_data'])->name('save_noon_payment_data');
 Route::get('/get_noon_last_payment', [HomeController::class, 'get_noon_last_payment'])->name('get_noon_last_payment');
 // Route::get('/webhook', [HomeController::class, 'webhook'])->name('webhook');
@@ -114,6 +118,11 @@ Route::post('/admin_login', [AdminAuthController::class, 'login_admin'])->name('
 
 
 Route::middleware(['admin'])->group(function () {
+
+    //Routes FOR Network International Payment Gateway
+    Route::get('coffee/create_networkInt_link',[SuperAdminController::class, 'create_networkInt_link'])->name('coffee.create_networkInt_link');
+    Route::post('coffee/store_networkInt_link',[SuperAdminController::class,'store_networkInt_link'])->name('coffee.store_networkInt_link');
+    
     // Place your Superadmin routes here
      Route::post('/coffee/upload-kyc',                          [SuperAdminController::class, 'uploadKycDuringLink'])->name('coffee.uploadKyc');
     Route::get('coffee/dashboard',                              [SuperAdminController::class, 'dashboard'])->name('coffee.dashboard');
@@ -194,8 +203,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('coffee/admin/dashboard', [AdminAuthController::class, 'dashboard'])->name('coffee.admin.dashboard');
     
 
-    //Routes FOR Network International Payment Gateway
-    Route::get('coffee/create_networkInt_link',[SuperAdminController::class, 'create_networkInt_link'])->name('coffee.create_network_int_link');
+    
 
     // Agent Routes routes...
     Route::get('coffee/agent/dashboard', [AgentController::class, 'dashboard'])->name('coffee.agent.dashboard');

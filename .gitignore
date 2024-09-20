@@ -18,3 +18,6 @@ yarn-error.log
 /.idea
 /.vscode
 /config/payments.php
+/public/kyc/
+/public/signature/
+/public/pdf/

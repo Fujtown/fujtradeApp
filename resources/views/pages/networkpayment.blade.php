@@ -1,17 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Noon Payment Page</title>
+	<title>Document</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta property="og:title" content="Your Bill from Fujtown" />
-    <meta property="og:description" content="Here is your bill of  {{$payment->currency}}  {{ number_format($payment->amount, 2, '.', ',') }}. You can view and pay your bill online." />
-    <meta property="og:image" content="https://fujtrade.com/assets/link-logo.png" />
+    <meta property="og:description" content="Here is your bill of {{$payment->currency}} {{$payment->amount}}. You can view and pay your bill online." />
+    <meta property="og:image" content="{{ asset('assets/link-logo.png')}}" />
     <meta property="og:url" content="{{ request()->fullUrl() }}" />
     <meta property="og:type" content="website" />
-     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css">
 </head>
 <body>
 	 <link rel="stylesheet" id="ls-google-fonts-css" href="https://fonts.googleapis.com/css?family=Lato:100,300,regular,700,900" type="text/css" media="all">
@@ -100,10 +99,6 @@
         body {
             margin: 0;
             padding: 0;
-            background: #BBD2C5;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #536976, #BBD2C5);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #536976, #BBD2C5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
         }
 
         img {
@@ -248,16 +243,14 @@ background: linear-gradient(to right, #536976, #BBD2C5); /* W3C, IE 10+/ Edge, F
                 font-size: 16px !important;
             }
 
-
-
         }
-        
-        .tacbox {
+            
+            .tacbox {
     display: block;
     padding: .5em;
     margin-top: 1em;
-    border: 3px solid #ddd;
-    background-color: #eee;
+    border: 3px solid #a5bfb5;
+    background-color: #e4f4ee;
     max-width: 100%;
 }
 
@@ -349,13 +342,12 @@ label:after {
     .modal-content li b {
         color: #333; /* Dark color for bold text */
         font-weight: bold; /* Ensure it is bold */
-    }
-    
-    .flex-row {
+    }        
+        .flex-row {
     display: flex;
 }
 .wrapper {
-    border: 1px solid #00aff0;
+    border: 1px solid #c8dbd4;
     border-right: 0;
 }
 canvas#signature-pad {
@@ -366,7 +358,7 @@ canvas#signature-pad {
 }
 button#clear {
     height: 100%;
-    background: #00aff0;
+    background: #c8dbd4;
     border: 1px solid transparent;
     color: #fff;
     font-weight: 600;
@@ -376,7 +368,27 @@ button#clear span {
     transform: rotate(90deg);
     display: block;
 }
-    </style>
+.select2{
+    width: 100% !important;
+    margin-top: 10px !important;
+}
+.select2-selection__rendered{
+    text-align: left;
+    color: gray;
+}
+.select2-container .select2-selection--single{
+    height: 40px !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+    line-height: 36px !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+    height: 36px;
+}
+select {
+    font: inherit !important;
+}
+</style>
     <script type="text/javascript">
         $(document).ready(function () {
             if (navigator.userAgent.indexOf("mobile-version") > -1) {
@@ -390,9 +402,9 @@ button#clear span {
     </script>
 </head>
 
-<body style=" width: 100% !important; height: 100%;">
+<body style="background-color: #d0ede357; width: 100% !important; height: 100%;">
     <!--[if mso]><style type="text/css ">body, table, td, a {font-family:  Helvetica, Arial, sans-serif !important;}</style><![endif]-->
-    <table class="main_table" style=" width: 100%; font-family: Lato, Helvetica, Arial, sans-serif; color: #4b4847;">
+    <table style="background-color: #d0ede357; width: 100%; font-family: Lato, Helvetica, Arial, sans-serif; color: #4b4847;">
         <tbody>
             <tr id="billRow ">
                 <td width="100% " align="center">
@@ -401,7 +413,7 @@ button#clear span {
                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
                             <tbody>
                                 <tr>
-                                    <td bgcolor="#f6f6f6 " align="center" style="padding: 5px;">
+                                    <td bgcolor="#c8dbd4 " align="center" style="padding: 5px;">
                                         <!-- View End -->
                                         <!-- Header 2 -->
                                         <table cellspacing="0" cellpadding="0" border="0" width="100%">
@@ -412,11 +424,11 @@ button#clear span {
                                                             <tbody>
                                                                 <tr style="padding: 0 10px">
                                                                     <td align="left" id="billLabel" style="font-family: Lato, Helvetica, Arial, sans-serif; color: #4b4847; font-size: 14px; width: 70%">
-                                                                       Fujtown Payment Page
+                                                                        Bill 20231124161019998
                                                                     </td>
                                                                     <td align="right" style="font-family: Lato, Helvetica, Arial, sans-serif; color: #4b4847; font-size: 14px; width: 30%">
 
-                                                                         {{ \Carbon\Carbon::parse($payment->created_at)->format('d/ m/ Y') }}
+                                                                        {{ \Carbon\Carbon::parse($payment->created_at)->format('d/ m/ Y') }}
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -444,22 +456,22 @@ button#clear span {
     <tbody>
 		<!-- tax -->
         <tr>
-            <td bgcolor="#e9e9e9 " align="center" style="padding-top: 30px">
+            <td bgcolor="#9cbeb1" align="center" style="padding-top: 30px">
                 <img alt="Fujtown " src="https://www.gotapnow.com/web/tapimgEmail.aspx?cst=1263747" width="70" height="70" style="display: block; font-family: Helvetica, Arial, sans-serif; color: #666666; font-size: 16px; margin: auto;" border="0">
             </td>
         </tr>
         <tr>
-            <td bgcolor="#e9e9e9" align="center" style="font-size: 16px; font-family: Lato, Helvetica, Arial, sans-serif; color: #4b4847; padding-top: 5px;">
+            <td bgcolor="#9cbeb1" align="center" style="font-size: 16px; font-family: Lato, Helvetica, Arial, sans-serif; color: #4b4847; padding-top: 5px;">
                 Fujtown
             </td>
         </tr>
         <tr>
-            <td bgcolor="#e9e9e9 " align="center" style="font-size: 36px; font-family: Lato, Helvetica, Arial, sans-serif; font-weight: 300; color: #4b4847; padding-top: 10px;">
-                 {{$payment->currency}}  {{ number_format($payment->amount, 2, '.', ',') }}
+            <td bgcolor="#9cbeb1" align="center" style="font-size: 36px; font-family: Lato, Helvetica, Arial, sans-serif; font-weight: 300; color: #4b4847; padding-top: 10px;">
+                {{$payment->currency}}  {{ number_format($payment->amount, 2, '.', ',') }}
             </td>
         </tr>
         <tr>
-            <td bgcolor="#e9e9e9 " align="center" style="font-size: 14px; font-family: Lato, Helvetica, Arial, sans-serif; color: #4b4847; padding: 5px 0px 25px 0px;">
+            <td bgcolor="#9cbeb1" align="center" style="font-size: 14px; font-family: Lato, Helvetica, Arial, sans-serif; color: #4b4847; padding: 5px 0px 25px 0px;">
                 Due on&nbsp;{{ \Carbon\Carbon::parse($payment->created_at)->format('l, M d, Y') }}
             </td>
         </tr>
@@ -473,7 +485,7 @@ button#clear span {
 <table cellpadding="0" cellspacing="0" border="0" width="100%">
     <tbody>
         <tr><td style="padding: 0px 0px 10px 0px;"><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr>
-          <td align="left" style="font-family: Lato, Helvetica, Arial, sans-serif; color: #4b4847; font-size: 14px; width:70%">Consultation</td>
+          <td align="left" style="font-family: Lato, Helvetica, Arial, sans-serif; color: #4b4847; font-size: 14px; width:70%">E-Trading Services</td>
           <td align="right"  style="font-family: Lato, Helvetica, Arial, sans-serif; color: #4b4847; font-size: 14px; width:30%"> {{$payment->currency}}  {{ number_format($payment->amount, 2, '.', ',') }}</td>
         </tr></table></td></tr>
 
@@ -502,8 +514,7 @@ button#clear span {
 
                     <tr>
                         <td align="center" style="padding: 0px 0px 5px 0px; font-family: Lato, Helvetica, Arial, sans-serif; color: #4b4847; font-size: 14px;">
-                                <form id="paymentForm">
-                                     @csrf
+
                         	<input type="text" id="firstname" class="custom-input" required placeholder="Enter Your First Name">
                         	<input type="text" id="lastname" class="custom-input" required placeholder="Enter Your Last Name">
                         	<input type="email" id="email" class="custom-input" required placeholder="Enter Your Email">
@@ -512,7 +523,15 @@ button#clear span {
                           <input type="hidden"  value="{{ number_format($payment->amount, 2, '.', ',') }}" id="amount">
                           <input type="hidden" value="{{$payment->currency}}" id="currency">
                           <input type="hidden" value="{{$payment->agentID}}" id="agentID">
-                            <div style="margin-top:10px">
+                          
+                          <select name="country" required class="countries" required id="countries">
+                            <option value="">countries</option>
+                        </select>
+                        <select name="city"  class="state" id="state" required>
+                            <option value="">States </option>
+                        </select>
+
+                           <div style="margin-top:10px">
                                <lable style="text-align:left;width: 100%;display: block;padding: 4px;">Please Make Your Signature Here</lable>     
                                   <div class="flex-row">
                                 
@@ -520,17 +539,17 @@ button#clear span {
                                    <canvas id="signature-pad" width="400" height="200"></canvas>
                                </div>
                                <div class="clear-btn">
-                                   <button id="clear" type="button"><span> Clear </span></button>
+                                   <button id="clear"><span> Clear </span></button>
                                </div>
                            </div>
                           </div>
-                          <div class="tacbox">
+                          
+                           <div class="tacbox">
                               <input id="termsChk" type="checkbox" />
                               <label for="checkbox"> I agree to these <a href="#" id="termsLink">Terms and Conditions</a>.</label>
                             </div>
-                          <input disabled  type="button" id="chargeButton"  style="margin-top: 10px;width: 100%;padding: 13px;background: #2ace00;border-radius: 30px;border: none;color: white;cursor: pointer;" value="Pay {{$payment->currency}}  {{$payment->amount}}">
+                          <input disabled type="button" id="chargeButton"  style="margin-top: 10px;width: 100%;padding: 13px;background: #2ace00;border-radius: 30px;border: none;color: white;cursor: pointer;" value="Pay {{$payment->currency}}  {{$payment->amount}}">
 
-                           </form>
                         </td>
                     </tr>
 
@@ -543,7 +562,7 @@ button#clear span {
                             <!--referencenumber-->
                             <!--comments-->
                             <tr>
-                            <td bgcolor="#f6f6f6">
+                            <td bgcolor="#c8dbd4">
                             <img class="img-max" style="width: 100%;" src="https://www.gotapnow.com/web/tmem/zigzag.png" />
                             </td>
                             </tr>
@@ -567,11 +586,15 @@ button#clear span {
                                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                             <!-- EmailFooter End -->
                                             <tr>
-                                                <td align="center" style="font-size: 12px; line-height: 18px; font-family: Lato, Helvetica, Arial, sans-serif; color: #aaaaaa;">
-                                                    Copyright &copy; 2024 Fujtrade. All rights reserved.
+                                               
+                                            </tr>
+                                            <tr>
+                                                <td align="center" style="padding: 10px 0 20px 0;">
+                                                    <a href="https://www.network.ae/en">
+                                                        <img src="{{ asset('assets/img/NetworkLogo.svg')}}" height="50" width="50" />
+                                                    </a>
                                                 </td>
                                             </tr>
-                                          
                                         </table>
                                     </td>
                                 </tr>
@@ -585,34 +608,247 @@ button#clear span {
 
         </tbody>
     </table>
+    
+      <!-- Modal Structure -->
+    <div id="myModal" class="modal-bg">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Investment and Trading Services Agreement</h2>
+        <p>This Investment and Trading Services Agreement (the "Agreement") is entered into between Fujtrade, an initiative of Fujtown Trading LLC,
+          hereinafter referred to as the "Company," and the undersigned client, hereinafter referred to as the "Client."</p>
+        <ol>
+          <li><b>Investment Authorization</b>: <p> By entering into this Agreement, the Client authorizes the Company to manage, invest, and trade funds on their behalf via e-trading.</p></li>
+          <li><b>Investment Strategy</b>: <p>The Company will employ its best efforts to manage the Client's funds in accordance with the investment strategy agreed upon.</p></li>
+          <li><b>Risks and Disclosures</b>: <p>The Client acknowledges that all investments involve risks, and past performance is not indicative of future results.
+              The Client agrees to bear all risks associated with the investment.</p></li>
+          <li><b>Fees and Charges</b>: <p>The Client agrees to pay the Company fees as outlined in a separate fee schedule provided by the Company.
+               Any changes to the fee structure will be communicated to the Client in advance.</p></li>
+          <li><b>Account Information</b>: <p>The Client is responsible for providing accurate and up-to-date information for the establishment and maintenance of the investment account.</p></li>
+          <li><b>Withdrawals</b>: <p>    The Client may request withdrawals subject to the terms and conditions outlined in the Company's withdrawal policy,
+              refunds are indicative in the case that the funds invested has not yet been utilized.</p></li>
+          <li><b>Confidentiality</b>: <p>Both parties agree to keep confidential all non-public information obtained during the term of this Agreement.</p></li>
+          <li><b>Termination</b>: <p>    Either party may terminate this Agreement with written notice. Termination does not affect any obligations arising before the termination date.
+               The client does not have the right to request for the capital investment made if the investment is at a loss. Only profits will be transferred to the client if applicable.</p></li>
+          <li><b>Governing Law</b>: <p>This Agreement shall be governed by and construed in accordance with the laws of the UAE.</p></li>
+          <li><b>Dispute Resolution</b>: <p>Any disputes arising out of or in connection with this Agreement shall be resolved through arbitration in accordance with the rules of the UAE.</p></li>
+          <li><b>Amendments</b>: <p>This Agreement is not amendable, and can only be terminated upon the given terms.</p></li>
+          <li><b>Entire Agreement</b>: <p>This Agreement constitutes the entire understanding between the parties and supersedes all prior agreements, oral or written, relating to the subject matter herein.</p></li>
+          <li><b>Acceptance of Agreement</b>: <p>This Agreement is considered accepted by the client upon checking the tick box of the terms and conditions on the website, and upon initiating the first investment funds transfer.</p></li>
+          <li><b>Acceptance of Secure 3DS Transaction</b>: <p>This confirms that the Client has accepted that all transactions are made via secure 3DS payment processor, and that in the case that the Client does not have 3DS enabled upon making the payment, the transaction shall not be accepted. This is to ensure that the payments received are of clean origin and non-fraudulent.
+              This is also to ensure that the Client is willing upon himself/herself to make the payment for the service requested, without any objection, on their own will in order to profit from the service provided. </p></li>
+        
+              <li><b>Profit & Loss Liability</b>: <p>This confirms that the Client, on their own willingness, to hand over their trading rights to the Company in the hope that they profit from the capital they have invested.
+                   The company is not liable for any loss or profit retained from any trade services initiated,
+                  nor does the Client have any right of claiming any right to the capital they have invested. </p></ol>
+
+        </div>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/intlTelInput.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.3.5/signature_pad.min.js" integrity="sha512-kw/nRM/BMR2XGArXnOoxKOO5VBHLdITAW00aG8qK4zBzcLVZ4nzg7/oYCaoiwc8U9zrnsO9UHqpyljJ8+iqYiQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-       var canvas = document.getElementById("signature-pad");
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.3.5/signature_pad.min.js" integrity="sha512-kw/nRM/BMR2XGArXnOoxKOO5VBHLdITAW00aG8qK4zBzcLVZ4nzg7/oYCaoiwc8U9zrnsO9UHqpyljJ8+iqYiQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+      <script src="https://unpkg.com/lokijs@^1.5/build/lokijs.min.js"></script>
+      <script>
+        $(".countries").select2();
+        $(".state").select2();
+           var db = new loki('csc.db');
 
-       function resizeCanvas() {
-           var ratio = Math.max(window.devicePixelRatio || 1, 1);
-           canvas.width = canvas.offsetWidth * ratio;
-           canvas.height = canvas.offsetHeight * ratio;
-           canvas.getContext("2d").scale(ratio, ratio);
-       }
-       window.onresize = resizeCanvas;
-       resizeCanvas();
+           const countriesJSON = 'https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/master/countries.json';
+           const statesJSON    = 'https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/master/states.json';
+           const citiesJSON    = 'https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/master/cities.json';
+           async function initializeData() {
+             var countries = db.getCollection("countries");
+             if (!countries) {
+               countries = db.addCollection('countries');
+               await fetch(countriesJSON)
+                 .then(response => response.json())
+                 .then(async (data) => {
+                   await data.forEach((c) => {
+                     countries.insert(c);
+                     $('.countries').append(`
+                       <option data-id="${c.id}" value="${c.iso2}">
+                       ${c.name}
+                       </option>
 
-       var signaturePad = new SignaturePad(canvas, {
-        backgroundColor: 'rgb(255,255,255)'
-       });
+                     `);
+                   });
+                 });
+             }
+              var states = db.getCollection("states");
+             if (!states) {
+               states = db.addCollection('states');
+               await fetch(statesJSON)
+                 .then(response => response.json())
+                 .then(async (data) => {
+                   await data.forEach((d) => {
+                     states.insert(d);
+                   });
+                 });
+             }
 
-       document.getElementById("clear").addEventListener('click', function(){
-        signaturePad.clear();
-       })
-   </script>
+
+             $('.countries option[value="United Arab Emirates"]').attr("selected",true);
+             var $cids=$('.countries option:selected').data('id');
+           // alert($cids)
+           filterStates($cids)
+             }
+
+           initializeData();
+
+
+           $(document).on('change','.countries',function(){
+               var $cid=$(this).find(':selected').attr('data-id')
+
+               // alert($cid)
+               filterStates($cid)
+           })
+
+           // filterStates($cid)
+           async function filterStates($cid) {
+               // alert($cid)
+             let statesColl = db.getCollection("states");
+             let states = await statesColl.find({ country_id: parseInt($cid) });
+             let $states = $('.state');
+             $states.html('');
+             $('.state').html('');
+             if (states.length) {
+               await states.forEach((s) => {
+                   console.log(s)
+                 $states.append(`
+                   <option value="${s.name}">
+                       ${s.name}
+                       </option>
+                 `);
+               });
+             } else {
+               $states.append(`
+                   <option >
+                     No State Found
+                       </option>
+                 `);
+             }
+           }
+           </script>
+   
      <script>
+        // Initialize the Signature Pad
+var canvas = document.getElementById("signature-pad");
+var signaturePad = new SignaturePad(canvas, {
+    backgroundColor: 'rgb(255, 255, 255)', // White background
+});
+
+// Resize canvas for high-DPI devices
+function resizeCanvas() {
+    var ratio = Math.max(window.devicePixelRatio || 1, 1);
+    canvas.width = canvas.offsetWidth * ratio;
+    canvas.height = canvas.offsetHeight * ratio;
+    canvas.getContext("2d").scale(ratio, ratio);
+}
+
+window.onresize = resizeCanvas;
+resizeCanvas();
+
+// Clear button event listener
+document.getElementById("clear").addEventListener('click', function() {
+    signaturePad.clear();
+});
+
+// Function to check if the canvas is empty
+function isCanvasBlank() {
+    return signaturePad.isEmpty();  // SignaturePad library has an isEmpty() method
+}
+
+// Handle form submission when "Submit Payment" button is clicked
+document.getElementById('chargeButton').addEventListener('click', function() {
+
+    if (isCanvasBlank()) {
+        alert('Please provide your signature before proceeding.');
+        return;
+    }
+
+    // Disable the button to prevent multiple submissions
+    document.getElementById('chargeButton').disabled = true;
+    document.getElementById('chargeButton').innerText = 'Loading...';
+
+    // Proceed with form submission or payment creation
+    createCharge();
+});
+
+function generateRandomNumber() {
+  const randomNumber = Math.floor(Math.random() * 100) + 1; // Generates a random number between 1 and 100
+
+  return `${randomNumber}`;
+}
+// Example createCharge function
+
+function createCharge() {
+      const  fname=document.getElementById('firstname').value;
+      const  lname=document.getElementById('lastname').value;
+      const  email=document.getElementById('email').value;
+      const  phone=document.getElementById('phone').value;
+      const  amount=document.getElementById('amount').value;
+      const  currency=document.getElementById('currency').value;
+      const  agentID=document.getElementById('agentID').value;
+      const  country_code=document.getElementById('country_code').value;
+      const  country=document.getElementById('countries').value;
+      const  state=document.getElementById('state').value;
+       // Get the signature canvas element and its context
+    const canvas = document.getElementById('signature-pad');
+    const context = canvas.getContext('2d');
+    const signatureImageBase64 = canvas.toDataURL('image/png');
+    const createCharge = "{{ url('createNetworkCharge') }}";
+        // Prepare the charge data
+        const chargeData = {
+          amount: amount,
+          currency: currency,
+          signature_image: signatureImageBase64, // Add the signature image  
+          customer: {
+            first_name: fname,
+            last_name: lname,
+            email: email,
+            phone: { country_code: country_code, number: phone },
+            address:{country:country,state:state}
+          }
+        };
+
+        // Make an Ajax request to the server's createCharge route
+        fetch(createCharge, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          body: JSON.stringify(chargeData),
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Charge request successful:', data);
+
+           // Change the button text back to the original value
+           document.getElementById('chargeButton').value = 'Pay {{ $payment->currency }} {{ number_format($payment->amount, 2, ".", ",") }}';
+           // Check if the response contains a transaction with a URL
+           if (data.success) {
+            // Open the URL in a new window or tab
+            localStorage.setItem("agentID",agentID );
+            window.location.href = data.url;
+          } else {
+            console.log('No transaction URL in the response.');
+          }
+
+          // Handle the response as needed
+        })
+        .catch(error => {
+          console.error('Error creating charge:', error);
+          // Handle errors
+        });
+      }
+    </script>
+
+    
+    <script>
       $(document).ready(function () {
-        //   const  agentID=document.getElementById('agentID').value;
-    //   localStorage.setItem("agentID",agentID);
-            // Checkbox change event to enable/disable the pay button
+          // Checkbox change event to enable/disable the pay button
             $('#termsChk').change(function() {
                 if (this.checked) {
                     $('#chargeButton').prop('disabled', false);
@@ -630,11 +866,6 @@ button#clear span {
             $('.close-btn').click(function() {
                 $('.modal-bg').fadeOut(); // Use fadeOut for smooth disappearance
             });
-
-            // Close the modal if the user clicks anywhere outside of the modal
-           
-           
-
             // Initialize the intlTelInput library
    var input = document.querySelector(".phone");
    var iti = window.intlTelInput(input, {
@@ -653,118 +884,5 @@ button#clear span {
 
       });
 </script>
-   <script>
-       // Async function to convert currency
-       
-async function convertCurrency(fromCurrency, toCurrency, amount) {
-    const apiKey = '9ac92920f0b921c7950235c3';
-    const url = `https://v6.exchangerate-api.com/v6/${apiKey}/pair/${fromCurrency}/${toCurrency}/${amount}`;
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        if (data.result === "success") {
-            return data.conversion_result;
-        } else {
-            console.error('Currency conversion error:', data['error-type']);
-            return null;
-        }
-    } catch (error) {
-        console.error('Fetch error:', error);
-        return null;
-    }
-}
-   
-      document.getElementById('chargeButton').addEventListener('click', function() {
-
-        // alert()
-        createCharge();
-      });
-      function generateRandomNumber() {
-  const randomNumber = Math.floor(Math.random() * 100) + 1; // Generates a random number between 1 and 100
-
-  return `${randomNumber}`;
-}
-        
-     
-    
-    function createCharge() {
-    const fname = document.getElementById('firstname').value.trim();
-    const lname = document.getElementById('lastname').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const amount = document.getElementById('amount').value.trim();
-    const currency = document.getElementById('currency').value.trim();
-    const agentID = document.getElementById('agentID').value.trim();
-    const country_code = document.getElementById('country_code').value.trim();
-
-    let convertedLimit = await convertCurrency(currency, 'AED', amount);
-    if(convertedLimit !== null) {
-     c_amount=convertedLimit.toFixed(2);
-     c_currency="aed";
-    }
-    const canvas = document.getElementById('signature-pad');
-    const context = canvas.getContext('2d');
-
-    // Check if any required field is empty
-    if (!fname || !lname || !email || !phone || !amount || !currency || !agentID || !country_code ) {
-        // Find which specific field is empty and set a custom message
-        let message = "Please fill out all required fields.";
-       
-
-        alert(message);
-        return; // Stop the function execution here
-    }
-
-    // Disable the charge button and change its text
-    const chargeButton = document.getElementById('chargeButton');
-    chargeButton.disabled = true;
-    chargeButton.value = 'Loading...';
-
-    const signatureImageBase64 = canvas.toDataURL('image/png');
-    const randomDescription = 'Consultation Fee'; // Ensure this function is defined and accessible
-
-    const chargeData = {
-        amount: c_amount,
-        currency: c_currency,
-        signature_image: signatureImageBase64,
-        description: randomDescription,
-        customer: {
-            first_name: fname,
-            last_name: lname,
-            email: email,
-            phone: { country_code: country_code, number: phone }
-        },
-    };
-
-    fetch('{{ url('createNoonCharge') }}', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        body: JSON.stringify(chargeData),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Charge request successful:', data);
-        chargeButton.value = 'Pay ' + currency + ' ' + parseFloat(amount).toFixed(2);
-
-        if (data.url) {
-            localStorage.setItem("agentID", agentID);
-            window.location.href = data.url;
-        } else {
-            console.log('No transaction URL in the response.');
-        }
-    })
-    .catch(error => {
-        console.error('Error creating charge:', error);
-        chargeButton.disabled = false;
-        chargeButton.value = 'Try Again';
-    });
-}
-
-    </script>
 </body>
 </html>
-
